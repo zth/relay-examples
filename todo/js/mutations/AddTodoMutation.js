@@ -16,9 +16,8 @@ import {
   graphql,
   type Disposable,
   type Environment,
-  type RecordProxy,
-  type RecordSourceSelectorProxy,
 } from 'react-relay';
+import type {RecordProxy, RecordSourceSelectorProxy} from 'relay-runtime';
 
 import {ConnectionHandler} from 'relay-runtime';
 import type {TodoApp_user} from 'relay/TodoApp_user.graphql';

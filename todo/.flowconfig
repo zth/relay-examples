@@ -9,6 +9,12 @@ types/
 [lints]
 
 [options]
+suppress_type=$FlowIssue
+suppress_type=$FlowFixMe
+suppress_type=$FlowFixMeProps
+
+esproposal.optional_chaining=enable
+
 module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=__generated__
 
