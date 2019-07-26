@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "babel-node ./server.js",
+    "relay": "reason-relay-compiler --src ./src/ --schema ./data/schema.graphql --artifactDirectory ./src/__generated__",
+    "bs:clean": "bsb -clean-world",
+    "bs:build": "bsb -make-world",
+    "update-schema": "babel-node ./scripts/updateSchema.js"
+  },
+  "dependencies": {
+    "bs-fetch": "^0.5.0",
+    "bs-platform": "6.0.3",
+    "express": "^4.16.4",
+    "express-graphql": "^0.7.1",
+    "graphql": "^14.1.1",
+    "graphql-relay": "^0.6.0",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "react-relay": "^5.0.0",
+    "reason-react": "^0.7.0",
+    "reason-relay": "^0.1.0-alpha.1",
+    "relay-hooks": "^1.2.3",
+    "relay-runtime": "^5.0.0",
+    "todomvc-app-css": "^2.2.0",
+    "todomvc-common": "^1.0.3",
+    "whatwg-fetch": "3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-flow": "^7.0.0",
+    "relay-compiler": "5.0.0",
+    "webpack": "^4.29.6",
+    "webpack-dev-server": "^3.2.1"
+  }
+}
