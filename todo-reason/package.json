@@ -3,6 +3,7 @@
   "scripts": {
     "start": "babel-node ./server.js",
     "relay": "reason-relay-compiler --src ./src/ --schema ./data/schema.graphql --artifactDirectory ./src/__generated__",
+    "build": "yarn relay && yarn bs:clean && yarn bs:build",
     "bs:clean": "bsb -clean-world",
     "bs:build": "bsb -make-world",
     "update-schema": "babel-node ./scripts/updateSchema.js"
