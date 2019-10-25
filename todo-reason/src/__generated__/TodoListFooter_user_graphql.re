@@ -1,9 +1,12 @@
-module Unions = {};
+type t;
+type fragmentRef;
+type fragmentRefSelector('a) =
+  {.. "__$fragment_ref__TodoListFooter_user": t} as 'a;
+external getFragmentRef: fragmentRefSelector('a) => fragmentRef = "%identity";
+
 type fragment = {
   .
-  "id": string,
-  "userId": string,
-  "completedCount": int,
+  "totalCount": int,
   "todos":
     Js.Nullable.t({
       .
@@ -15,23 +18,22 @@ type fragment = {
               "node":
                 Js.Nullable.t({
                   .
-                  "id": string,
                   "complete": bool,
+                  "id": string,
                 }),
             }),
           ),
         ),
     }),
-  "totalCount": int,
+  "completedCount": int,
+  "userId": string,
+  "id": string,
 };
+type operationType = ReasonRelay.fragmentNode;
 
-type t;
-type fragmentRef;
-type fragmentRefSelector('a) =
-  {.. "__$fragment_ref__TodoListFooter_user": t} as 'a;
-external getFragmentRef: fragmentRefSelector('a) => fragmentRef = "%identity";
+module Unions = {};
 
-let node: ReasonRelay.fragmentNode = [%bs.raw
+let node: operationType = [%bs.raw
   {| (function(){
 var v0 = {
   "kind": "ScalarField",

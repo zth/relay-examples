@@ -26,7 +26,7 @@ let make = (~user as userRef) => {
   let environment = ReasonRelay.useEnvironmentFromContext();
 
   let completedTodos =
-    ReasonRelayUtils.collectConnectionNodesFromNullable(user##todos)
+    Utils.collectConnectionNodesFromNullable(user##todos)
     ->Belt.Array.keepMap(node => node##complete ? Some(node) : None);
 
   let handleRemoveCompletedTodosClick = _ =>

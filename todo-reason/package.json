@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "start": "babel-node ./server.js",
-    "relay": "reason-relay-compiler --src ./src/ --schema ./data/schema.graphql --artifactDirectory ./src/__generated__",
+    "relay": "reason-relay-compiler",
     "build": "yarn relay && yarn bs:clean && yarn bs:build",
     "bs:clean": "bsb -clean-world",
     "bs:build": "bsb -make-world",
@@ -10,18 +10,18 @@
   },
   "dependencies": {
     "bs-fetch": "^0.5.0",
-    "bs-platform": "6.0.3",
+    "bs-platform": "6.2.1",
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
     "graphql": "^14.1.1",
     "graphql-relay": "^0.6.0",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
-    "react-relay": "^5.0.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-relay": "^0.0.0-experimental-a1a40b68",
     "reason-react": "^0.7.0",
-    "reason-relay": "^0.1.3",
-    "relay-hooks": "^1.2.3",
-    "relay-runtime": "^5.0.0",
+    "reason-relay": "0.3.1-relay-experimental",
+    "relay-config": "^7.0.0",
+    "relay-runtime": "^7.0.0",
     "todomvc-app-css": "^2.2.0",
     "todomvc-common": "^1.0.3",
     "whatwg-fetch": "3.0.0"
@@ -31,7 +31,7 @@
     "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-flow": "^7.0.0",
-    "relay-compiler": "5.0.0",
+    "relay-compiler": "7.0.0",
     "webpack": "^4.29.6",
     "webpack-dev-server": "^3.2.1"
   }

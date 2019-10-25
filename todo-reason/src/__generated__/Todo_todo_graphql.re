@@ -1,17 +1,19 @@
-module Unions = {};
-type fragment = {
-  .
-  "complete": bool,
-  "id": string,
-  "text": string,
-};
-
 type t;
 type fragmentRef;
 type fragmentRefSelector('a) = {.. "__$fragment_ref__Todo_todo": t} as 'a;
 external getFragmentRef: fragmentRefSelector('a) => fragmentRef = "%identity";
 
-let node: ReasonRelay.fragmentNode = [%bs.raw
+type fragment = {
+  .
+  "text": string,
+  "id": string,
+  "complete": bool,
+};
+type operationType = ReasonRelay.fragmentNode;
+
+module Unions = {};
+
+let node: operationType = [%bs.raw
   {| {
   "kind": "Fragment",
   "name": "Todo_todo",

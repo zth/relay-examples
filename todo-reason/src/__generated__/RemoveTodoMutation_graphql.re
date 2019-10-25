@@ -1,26 +1,30 @@
-module Unions = {};
-type input_RemoveTodoInput = {
-  .
-  "id": string,
-  "userId": string,
-  "clientMutationId": option(string),
-};
-type variables = {. "input": input_RemoveTodoInput};
 type response = {
   .
   "removeTodo":
     Js.Nullable.t({
       .
-      "deletedTodoId": string,
       "user": {
         .
-        "completedCount": int,
         "totalCount": int,
+        "completedCount": int,
       },
+      "deletedTodoId": string,
     }),
 };
+type variables = {
+  .
+  "input": {
+    .
+    "clientMutationId": option(string),
+    "userId": string,
+    "id": string,
+  },
+};
+type operationType = ReasonRelay.mutationNode;
 
-let node: ReasonRelay.mutationNode = [%bs.raw
+module Unions = {};
+
+let node: operationType = [%bs.raw
   {| (function(){
 var v0 = [
   {

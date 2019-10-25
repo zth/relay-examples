@@ -1,33 +1,37 @@
-module Unions = {};
-type input_MarkAllTodosInput = {
-  .
-  "complete": bool,
-  "userId": string,
-  "clientMutationId": option(string),
-};
-type variables = {. "input": input_MarkAllTodosInput};
 type response = {
   .
   "markAllTodos":
     Js.Nullable.t({
       .
+      "user": {
+        .
+        "completedCount": int,
+        "id": string,
+      },
       "changedTodos":
         Js.Nullable.t(
           array({
             .
-            "id": string,
             "complete": bool,
+            "id": string,
           }),
         ),
-      "user": {
-        .
-        "id": string,
-        "completedCount": int,
-      },
     }),
 };
+type variables = {
+  .
+  "input": {
+    .
+    "clientMutationId": option(string),
+    "userId": string,
+    "complete": bool,
+  },
+};
+type operationType = ReasonRelay.mutationNode;
 
-let node: ReasonRelay.mutationNode = [%bs.raw
+module Unions = {};
+
+let node: operationType = [%bs.raw
   {| (function(){
 var v0 = [
   {

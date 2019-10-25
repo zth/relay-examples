@@ -1,5 +1,3 @@
-module Unions = {};
-type variables = {. "userId": option(string)};
 type response = {
   .
   "user":
@@ -8,8 +6,16 @@ type response = {
       "__$fragment_ref__TodoApp_user": TodoApp_user_graphql.t,
     }),
 };
+type refetchVariables = {. "userId": option(string)};
+let makeRefetchVariables = (~userId=?, ()): refetchVariables => {
+  "userId": userId,
+};
+type variables = {. "userId": option(string)};
+type operationType = ReasonRelay.queryNode;
 
-let node: ReasonRelay.queryNode = [%bs.raw
+module Unions = {};
+
+let node: operationType = [%bs.raw
   {| (function(){
 var v0 = [
   {

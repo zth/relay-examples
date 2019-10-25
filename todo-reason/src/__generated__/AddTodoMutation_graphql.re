@@ -1,37 +1,41 @@
-module Unions = {};
-type input_AddTodoInput = {
-  .
-  "text": string,
-  "userId": string,
-  "clientMutationId": option(string),
-};
-type variables = {. "input": input_AddTodoInput};
 type response = {
   .
   "addTodo":
     Js.Nullable.t({
       .
+      "user": {
+        .
+        "totalCount": int,
+        "id": string,
+      },
       "todoEdge": {
         .
-        "__typename": string,
-        "cursor": string,
         "node":
           Js.Nullable.t({
             .
-            "complete": bool,
-            "id": string,
             "text": string,
+            "id": string,
+            "complete": bool,
           }),
-      },
-      "user": {
-        .
-        "id": string,
-        "totalCount": int,
+        "cursor": string,
+        "__typename": string,
       },
     }),
 };
+type variables = {
+  .
+  "input": {
+    .
+    "clientMutationId": option(string),
+    "userId": string,
+    "text": string,
+  },
+};
+type operationType = ReasonRelay.mutationNode;
 
-let node: ReasonRelay.mutationNode = [%bs.raw
+module Unions = {};
+
+let node: operationType = [%bs.raw
   {| (function(){
 var v0 = [
   {

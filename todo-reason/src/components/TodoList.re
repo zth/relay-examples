@@ -49,7 +49,7 @@ let make = (~user as userRef) => {
     </label>
     <ul className="todo-list">
       {user##todos
-       |> ReasonRelayUtils.collectConnectionNodesFromNullable
+       |> Utils.collectConnectionNodesFromNullable
        |> Array.map(node => <Todo key={node##id} todo=node user />)
        |> React.array}
     </ul>

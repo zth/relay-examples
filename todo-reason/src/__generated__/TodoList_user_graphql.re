@@ -1,6 +1,16 @@
-module Unions = {};
+type t;
+type fragmentRef;
+type fragmentRefSelector('a) =
+  {.. "__$fragment_ref__TodoList_user": t} as 'a;
+external getFragmentRef: fragmentRefSelector('a) => fragmentRef = "%identity";
+
 type fragment = {
   .
+  "__$fragment_ref__Todo_user": Todo_user_graphql.t,
+  "completedCount": int,
+  "totalCount": int,
+  "userId": string,
+  "id": string,
   "todos":
     Js.Nullable.t({
       .
@@ -12,28 +22,20 @@ type fragment = {
               "node":
                 Js.Nullable.t({
                   .
-                  "id": string,
-                  "complete": bool,
                   "__$fragment_ref__Todo_todo": Todo_todo_graphql.t,
+                  "complete": bool,
+                  "id": string,
                 }),
             }),
           ),
         ),
     }),
-  "id": string,
-  "userId": string,
-  "totalCount": int,
-  "completedCount": int,
-  "__$fragment_ref__Todo_user": Todo_user_graphql.t,
 };
+type operationType = ReasonRelay.fragmentNode;
 
-type t;
-type fragmentRef;
-type fragmentRefSelector('a) =
-  {.. "__$fragment_ref__TodoList_user": t} as 'a;
-external getFragmentRef: fragmentRefSelector('a) => fragmentRef = "%identity";
+module Unions = {};
 
-let node: ReasonRelay.fragmentNode = [%bs.raw
+let node: operationType = [%bs.raw
   {| (function(){
 var v0 = {
   "kind": "ScalarField",

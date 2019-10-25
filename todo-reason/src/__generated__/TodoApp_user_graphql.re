@@ -1,19 +1,21 @@
-module Unions = {};
-type fragment = {
-  .
-  "id": string,
-  "userId": string,
-  "totalCount": int,
-  "__$fragment_ref__TodoListFooter_user": TodoListFooter_user_graphql.t,
-  "__$fragment_ref__TodoList_user": TodoList_user_graphql.t,
-};
-
 type t;
 type fragmentRef;
 type fragmentRefSelector('a) = {.. "__$fragment_ref__TodoApp_user": t} as 'a;
 external getFragmentRef: fragmentRefSelector('a) => fragmentRef = "%identity";
 
-let node: ReasonRelay.fragmentNode = [%bs.raw
+type fragment = {
+  .
+  "__$fragment_ref__TodoList_user": TodoList_user_graphql.t,
+  "__$fragment_ref__TodoListFooter_user": TodoListFooter_user_graphql.t,
+  "totalCount": int,
+  "userId": string,
+  "id": string,
+};
+type operationType = ReasonRelay.fragmentNode;
+
+module Unions = {};
+
+let node: operationType = [%bs.raw
   {| {
   "kind": "Fragment",
   "name": "TodoApp_user",

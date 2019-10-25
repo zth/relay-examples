@@ -1,11 +1,3 @@
-module Unions = {};
-type input_RenameTodoInput = {
-  .
-  "id": string,
-  "text": string,
-  "clientMutationId": option(string),
-};
-type variables = {. "input": input_RenameTodoInput};
 type response = {
   .
   "renameTodo":
@@ -13,13 +5,25 @@ type response = {
       .
       "todo": {
         .
-        "id": string,
         "text": string,
+        "id": string,
       },
     }),
 };
+type variables = {
+  .
+  "input": {
+    .
+    "clientMutationId": option(string),
+    "text": string,
+    "id": string,
+  },
+};
+type operationType = ReasonRelay.mutationNode;
 
-let node: ReasonRelay.mutationNode = [%bs.raw
+module Unions = {};
+
+let node: operationType = [%bs.raw
   {| (function(){
 var v0 = [
   {

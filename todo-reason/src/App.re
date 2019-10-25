@@ -13,29 +13,18 @@ module AppDisplayer = {
   let make = () => {
     let query = Query.use(~variables={"userId": Some("me")}, ());
 
-    switch (query) {
-    | Loading => <div> {React.string("Loading")} </div>
-    | Error(e) =>
-      <div>
-        {React.string(
-           Belt.Option.getWithDefault(
-             Js.Exn.message(e),
-             "Something went wrong!",
-           ),
-         )}
-      </div>
-    | Data(data) =>
-      switch (data##user |> Js.Nullable.toOption) {
-      | Some(user) => <TodoApp user />
-      | None => React.string("Something went wrong!")
-      }
+    switch (query##user |> Js.Nullable.toOption) {
+    | Some(user) => <TodoApp user />
+    | None => React.string("Something went wrong!")
     };
   };
 };
 
 ReactDOMRe.renderToElementWithId(
   <ReasonRelay.Context.Provider environment=RelayEnv.environment>
-    <AppDisplayer />
+    <React.Suspense fallback={<div> {React.string("Loading...")} </div>}>
+      <AppDisplayer />
+    </React.Suspense>
   </ReasonRelay.Context.Provider>,
   "root",
 );
